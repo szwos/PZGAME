@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/labels.uss?fileID=7433441132597879392&amp;guid=cfd52d3ee79eca540a1f36db9638545e&amp;type=3#labels" />
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/buttons.uss?fileID=7433441132597879392&amp;guid=7f88c50d7eeec754c81cd425a98d3faa&amp;type=3#buttons" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI%20Toolkit/Background/Clean-wallpaper.jpg?fileID=2800000&amp;guid=97dc60eea8f4e9248be3ca8f69b4ae06&amp;type=3#Clean-wallpaper&apos;);">
+        <ui:VisualElement name="MainBar" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 40%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; justify-content: center;">
+            <ui:Label tabindex="-1" text="Game" display-tooltip-when-elided="true" name="Title" class="label-main-title" />
+            <ui:Button text="Start" display-tooltip-when-elided="true" name="Start" class="button-main-title" />
+            <ui:Button text="Settings" display-tooltip-when-elided="true" name="Settings" class="button-main-title" />
+            <ui:Button text="Quit" display-tooltip-when-elided="true" name="Quit" class="button-main-title" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

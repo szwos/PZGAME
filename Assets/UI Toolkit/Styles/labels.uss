@@ -1,0 +1,8 @@
+.label-main-title {
+    font-size: 100px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
