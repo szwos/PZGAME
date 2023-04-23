@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: PlayerJumpState
   m_EditorClassIdentifier: 
   jumpVelocity: 10
+  airControl: 1
+  speed: 5
