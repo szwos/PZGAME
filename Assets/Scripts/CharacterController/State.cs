@@ -6,7 +6,7 @@ namespace CharacterController
     {
         protected T stateRunner;
 
-        public virtual void Init(T parent)
+        public virtual void Enter(T parent)
         {
             stateRunner = parent;
         }

@@ -26,7 +26,7 @@ namespace CharacterController
             }
 
             activeState = states.First(s => s.GetType() == newStateType);
-            activeState.Init(GetComponent<T>());
+            activeState.Enter(GetComponent<T>());
         }
 
         private void Update()

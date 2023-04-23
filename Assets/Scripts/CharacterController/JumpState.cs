@@ -20,9 +20,9 @@ namespace CharacterController
         private bool leftTheGround;
         private float xInput;
 
-        public override void Init(CharacterCtrl parent)
+        public override void Enter(CharacterCtrl parent)
         {
-            base.Init(parent);
+            base.Enter(parent);
             if (groundCheck == null)
                 groundCheck = parent.GetComponentInChildren<GroundCheck>();
             if (rb == null)
