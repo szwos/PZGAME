@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -11,11 +13,17 @@ public class PlayerMovement : MonoBehaviour {
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
+	bool bhop_active = false;
+	public int bhop_c = 1;
 	
-	// Update is called once per frame
-	void Update () {
 
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+    // Update is called once per frame
+    void Update () {
+        //--------- BHOP ---------//
+        bhop_c = controller.GetComponent<CharacterController2D>().bhop_count;
+		runSpeed = 40 * bhop_c;
+        //-----------------------//
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
 		if (Input.GetButtonDown("Jump"))
 		{
