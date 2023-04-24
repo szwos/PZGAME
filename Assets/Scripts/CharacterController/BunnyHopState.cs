@@ -18,12 +18,14 @@ namespace CharacterController
         //private CharacterAnimation animation;
         private float xInput;
         private bool jumpInput;
-        private int bhopCount;
+        //private int bhopCount;
+        private float bhopVelocityScaler;
         private bool inAir;
         private bool bhopPossible;
 
         public override void Enter(CharacterCtrl parent)
         {
+            Debug.Log("Entering Bhop State");
             base.Enter(parent);
             if (groundCheck == null)
                 groundCheck = parent.GetComponentInChildren<GroundCheck>();
@@ -33,7 +35,12 @@ namespace CharacterController
                 animation = parent.CharacterAnimation;*/
 
             //reset bhopCount when player enters Bhop state
-            bhopCount = 1;
+            //bhopCount = 1;
+            bhopVelocityScaler = 1.1f;
+            bhopPossible = true;
+
+            //jump when entering state
+            rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
 
         }
 
@@ -41,6 +48,8 @@ namespace CharacterController
         {
             xInput = Input.GetAxis("Horizontal");
             jumpInput = Input.GetButtonDown("Jump");
+
+            //Debug.Log(jumpInput);
             //TODO: other inputs
         }
 
@@ -55,6 +64,7 @@ namespace CharacterController
 
         public override void Exit()
         {
+            Debug.Log("Leaving BHOP state");
             //do nothing
         }
 
@@ -67,9 +77,11 @@ namespace CharacterController
         //TODO: handle slopes better (currently character breaks away from the ground after goin up slope, what is worse - this also happens when character changes direction going up slope)
         public override void Update()
         {
-            rb.velocity = new Vector2(speed * xInput * bhopCount, rb.velocity.y);
+            //Debug.Log("BHOPSTATE");
+            //rb.velocity = new Vector2(speed * xInput * bhopCount, rb.velocity.y);
+            rb.velocity = new Vector2(speed * xInput * bhopVelocityScaler, rb.velocity.y);
 
-            Debug.Log(groundCheck.Check().ToString() + ", " + jumpInput.ToString());
+            //Debug.Log(groundCheck.Check().ToString() + ", " + jumpInput.ToString());
             if (groundCheck.Check() && jumpInput)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
@@ -82,7 +94,9 @@ namespace CharacterController
             if (groundCheck.Check() && inAir)
             {
                 stateRunner.StartCoroutine(BhopWait());
-                bhopCount++;
+                //bhopCount++;
+                if(bhopVelocityScaler <= 3f)//limit to 3x original speed
+                    bhopVelocityScaler += 0.1f;
             }
 
             
@@ -94,7 +108,7 @@ namespace CharacterController
         {
             bhopPossible = true;
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
 
             bhopPossible = false;
 
