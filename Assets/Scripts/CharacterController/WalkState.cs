@@ -12,7 +12,7 @@ namespace CharacterController
 
         private Rigidbody2D rb;
         private GroundCheck groundCheck;
-        //private CharacterAnimation animation;
+        private CharacterAnimation animation;
         private float xInput;
         private bool jumpInput;
         private bool bhopPossible = false;
@@ -24,8 +24,8 @@ namespace CharacterController
                 groundCheck = parent.GetComponentInChildren<GroundCheck>();
             if (rb == null)
                 rb = parent.GetComponent<Rigidbody2D>();
-            /*if (animation == null)
-                animation = parent.CharacterAnimation;*/
+            if (animation == null)
+                animation = parent.CharacterAnimation;
 
             //every time player enters walking state, he has 0.1s time to enter BunnyHop state
             stateRunner.StartCoroutine(BhopWait());
@@ -40,12 +40,12 @@ namespace CharacterController
 
         public override void ChangeState()
         {
-            if(groundCheck.Check() && jumpInput)
+            if (groundCheck.Check() && jumpInput)
             {
                 //BHOP is a special state of jump state
                 if (bhopPossible)
                     stateRunner.SetState(typeof(BunnyHopState));
-                else 
+                else
                     stateRunner.SetState(typeof(JumpState));
             }
         }
@@ -66,6 +66,11 @@ namespace CharacterController
             rb.velocity = new Vector2(speed * xInput, rb.velocity.y);
             //TODO: animation flip character
             //TODO: play walking animation
+
+            if (rb.velocity.x > 0.1 || rb.velocity.x < -0.1) //TODO: remove magic numbers, set as MonoBehaviour parameters or const
+                animation.animator.SetBool("IsMoving", true);
+            else
+                animation.animator.SetBool("IsMoving", false);
         }
 
         private IEnumerator BhopWait()
