@@ -59,7 +59,3 @@ sysinfo.txt
 crashlytics-build.properties
 
 dev/
-
-# Unity3D user settings
-/[Uu]serSettings/
-UserSettings/Layouts/default-2022.dwlt
