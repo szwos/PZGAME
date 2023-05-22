@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
@@ -18,7 +19,12 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
 
-	private void Awake()
+    //--------- BHOP ---------//
+    bool inAir = false;
+	bool bhop_possible = false;
+	public int bhop_count = 1;
+    //-----------------------//
+    private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
@@ -34,12 +40,27 @@ public class CharacterController2D : MonoBehaviour
 		for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
+			{
 				m_Grounded = true;
+                //--------- BHOP ---------//
+                if (inAir == true)
+				{
+					StartCoroutine(Bhop_wait());
+                    inAir = false;
+                }
+                //-----------------------//
+
+            }
+        }
+        //--------- BHOP ---------//
+        if (m_Grounded == true && bhop_possible == false) {
+			bhop_count = 1;
 		}
-	}
+        //-----------------------//
+    }
 
 
-	public void Move(float move, bool crouch, bool jump)
+    public void Move(float move, bool crouch, bool jump)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -95,8 +116,15 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-		}
-	}
+
+            //--------- BHOP ---------//
+            inAir = true;
+			if (bhop_possible == true && bhop_count<10) {
+				bhop_count += 1;
+			}
+            //------------------------//	
+        }
+    }
 
 
 	private void Flip()
@@ -110,4 +138,21 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= 1;
 		transform.localScale = theScale;
 	}
+    //--------- BHOP ---------//
+    IEnumerator Bhop_wait() {
+		bhop_possible = true;
+		while (bhop_possible==true)
+		{
+			if (m_Grounded==true ) {
+                yield return new WaitForSeconds(0.1f);
+                if(m_Grounded == true) { bhop_possible = false; }
+					
+			}
+            yield return new WaitForSeconds(0.1f);
+        }
+		
+    }
+    //----------------------//
 }
+
+
