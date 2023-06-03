@@ -12,11 +12,9 @@ public class FlipCharacter : MonoBehaviour
 
         if(xInput > 0.1)
         {
-            //gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         } else if (xInput < -0.1)
         {
-            //gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
         }
     }

@@ -40,7 +40,6 @@ namespace CharacterController
 
         public override void ChangeState()
         {
-            Debug.Log("groundCkeck: " + groundCheck.Check().ToString() + " jumpInput: " + jumpInput.ToString());
             if (groundCheck.Check() && jumpInput)
             {
                 //BHOP is a special state of jump state
