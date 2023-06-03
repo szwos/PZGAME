@@ -2,6 +2,8 @@
 using UnityEngine;
 using System.Collections;
 
+//TODO: coyote time for bunny hop cooldown (accept input, that was pressed fraction of second before colliding with ground)
+
 namespace CharacterController
 {
     [CreateAssetMenu(menuName = "States/Character/BunnyHop")]
