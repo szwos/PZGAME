@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField]
     public string startingScene = "level0";
+    [SerializeField]
     public string settingsScene = "settingsScene";
 
     private void Awake()

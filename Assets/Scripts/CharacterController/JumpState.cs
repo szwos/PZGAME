@@ -22,7 +22,6 @@ namespace CharacterController
 
         public override void Enter(CharacterCtrl parent)
         {
-            Debug.Log("Entered jump state!");
             base.Enter(parent);
             if (groundCheck == null)
                 groundCheck = parent.GetComponentInChildren<GroundCheck>();

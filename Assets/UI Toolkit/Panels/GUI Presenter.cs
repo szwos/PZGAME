@@ -5,9 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class GUI : MonoBehaviour
+public class GUIPresenter : MonoBehaviour
 {
     private FloatField timer;
+
+    private bool shallUpdate = true; //TODO: this is a quick hack, could be solved more elegantly
+
     private void Awake()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
@@ -16,6 +19,14 @@ public class GUI : MonoBehaviour
 
     private void Update()
     {
-        timer.value = Time.timeSinceLevelLoad;
+        if(shallUpdate)
+        {
+            timer.value = Time.timeSinceLevelLoad;
+        }
+    }
+
+    public void StopUpdating()
+    {
+        shallUpdate = false;
     }
 }
