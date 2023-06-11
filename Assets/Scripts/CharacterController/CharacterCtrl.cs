@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CharacterController
@@ -11,5 +12,7 @@ namespace CharacterController
             CharacterAnimation = new CharacterAnimation(GetComponent<Animator>(), transform);
             base.Awake();
         }
+
+          
     }
 }

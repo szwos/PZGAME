@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="SelectionBox" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 30%; padding-right: 30%; padding-top: 10%; padding-bottom: 10%;">
+            <ui:Label tabindex="-1" text="Your time was:" display-tooltip-when-elided="true" style="flex-direction: column; align-items: auto; -unity-text-align: upper-center;" />
+            <ui:Label tabindex="-1" text="0.00" display-tooltip-when-elided="true" name="time" style="-unity-text-align: upper-center;" />
+            <ui:Button text="Restart" display-tooltip-when-elided="true" name="RestartButton" />
+            <ui:Button text="Main menu" display-tooltip-when-elided="true" name="MainMenuButton" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
