@@ -15,8 +15,12 @@ namespace CharacterController
         [SerializeField]
         private float jumpVelocity = 10f;
 
+        [SerializeField]
+        private GameObject particles;
+
         private Rigidbody2D rb;
         private GroundCheck groundCheck;
+        
         //private CharacterAnimation animation;
         private float xInput;
         private bool jumpInput;
@@ -33,6 +37,8 @@ namespace CharacterController
                 groundCheck = parent.GetComponentInChildren<GroundCheck>();
             if (rb == null)
                 rb = parent.GetComponent<Rigidbody2D>();
+            
+
             /*if (animation == null)
                 animation = parent.CharacterAnimation;*/
 
@@ -43,6 +49,9 @@ namespace CharacterController
 
             //jump when entering state
             rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+
+            //emit particles
+            Instantiate(particles, rb.transform.position, Quaternion.identity);
 
         }
 
@@ -87,6 +96,7 @@ namespace CharacterController
             if (groundCheck.Check() && jumpInput)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+                Instantiate(particles, rb.transform.position, Quaternion.identity);
             }
 
             //TODO: animation flip character
