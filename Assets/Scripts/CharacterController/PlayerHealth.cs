@@ -1,6 +1,7 @@
 using CharacterController;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth: MonoBehaviour
@@ -8,8 +9,10 @@ public class PlayerHealth: MonoBehaviour
     [SerializeField]
     public GameObject gameOverMenuPrefab;
 
-    public int maxHealth = 100;
+    public int maxHealth = 3;
     public int health;
+
+    private bool canTakeDamage = true;
 
     private void Start()
     {
@@ -30,7 +33,29 @@ public class PlayerHealth: MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        if(canTakeDamage)
+        {
+            health -= damage;
+            StartCoroutine(IFrameWait());
+        }
+            
+    }
+
+    private IEnumerator IFrameWait()
+    {
+        canTakeDamage = false;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+
+
+        yield return new WaitForSeconds(1f);
+
+
+        if (this.enabled)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            canTakeDamage = true;
+        }
+        
     }
 
 }
