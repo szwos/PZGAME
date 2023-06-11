@@ -1,4 +1,3 @@
-//TODO: move to States???
 using UnityEngine;
 using System.Collections;
 using System;
@@ -11,14 +10,14 @@ namespace CharacterController
     {
         [SerializeField]
         private float speed = 5f;
-        private int slide_slowdown = 3000;
+        //private int slide_slowdown = 3000;
         private Rigidbody2D rb;
         private GroundCheck groundCheck;
         private CharacterAnimation animation;
         private float xInput;
         private bool jumpInput;
         private bool bhopPossible = false;
-        private bool sliding = false;
+        private bool enterSlide = false;
 
 
         public override void Enter(CharacterCtrl parent)
@@ -33,6 +32,8 @@ namespace CharacterController
 
             //every time player enters walking state, he has 0.1s time to enter BunnyHop state
             stateRunner.StartCoroutine(BhopWait());
+
+            enterSlide = false;
         }
 
         public override void CaptureInput()
@@ -40,6 +41,10 @@ namespace CharacterController
             xInput = Input.GetAxis("Horizontal");
             jumpInput = Input.GetButtonDown("Jump");
             
+            if (Input.GetButtonDown("Slide"))
+            {
+                enterSlide = true;
+            }
             //TODO: other inputs
         }
 
@@ -52,6 +57,11 @@ namespace CharacterController
                     stateRunner.SetState(typeof(BunnyHopState));
                 else
                     stateRunner.SetState(typeof(JumpState));
+            }
+
+            if(enterSlide)
+            {
+                stateRunner.SetState(typeof(SlideState));
             }
             
         }
@@ -71,7 +81,7 @@ namespace CharacterController
         {
             //**********SLIDE tech**************//
             //if velocity != 0 to mo¿e a jak nie to nie mozna slide w miejscu????
-            if (Input.GetKey("c"))
+            /*if (Input.GetKey("c"))
             {
                 sliding = true;
                 rb.gravityScale = 30f;
@@ -84,17 +94,17 @@ namespace CharacterController
 
 
             }
-            else {
-                sliding = false;
-                slide_slowdown = 3000;
+            else {*/
+                //sliding = false;
+                //slide_slowdown = 3000;
                 rb.gravityScale = 3f;
                 rb.velocity = new Vector2(speed * xInput, rb.velocity.y); 
-            }
+            //}
             //**********SLIDE tech**************//
 
             //TODO: animation flip character
             //TODO: play walking animation
-            Debug.Log(rb.velocity.x);
+            //Debug.Log(rb.velocity.x);
             if (rb.velocity.x > 0.1 || rb.velocity.x < -0.1) //TODO: remove magic numbers, set as MonoBehaviour parameters or const
                 animation.animator.SetBool("IsMoving", true);
             else
