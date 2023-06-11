@@ -1,9 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/my-text-field.uss?fileID=7433441132597879392&amp;guid=6310466739aba214ab8e73d2ec5a9540&amp;type=3#my-text-field" />
     <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
         <ui:VisualElement name="Upper" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: space-between; height: 10%; max-height: 10%; flex-direction: row-reverse;">
             <ui:VisualElement name="HealthDisplay" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: auto; max-width: 15%; -unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/Sprites/GUI/hearts3.png?fileID=21300000&amp;guid=1d790b56ab9ae8347b878cb467e252e9&amp;type=3#hearts3&apos;);" />
             <ui:VisualElement name="Spacer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-            <ui:FloatField label="Czas:" value="42,2" readonly="true" focusable="false" name="Timer" style="position: relative; font-size: 20px; -unity-background-scale-mode: stretch-to-fill;" />
+            <ui:FloatField label="Czas:" value="42,2" readonly="true" focusable="false" name="Timer" class="text-field" style="position: relative; font-size: 20px; -unity-background-scale-mode: stretch-to-fill; background-color: rgba(56, 56, 56, 0); -unity-background-image-tint-color: rgb(68, 29, 70); background-image: url(&apos;project://database/Assets/UI%20Toolkit/Background/game_over_bg.png?fileID=2800000&amp;guid=929d55b8952edbd40b6eb0f908f2b624&amp;type=3#game_over_bg&apos;); border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; color: rgb(0, 0, 0); -unity-font-style: bold; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; justify-content: flex-start; align-items: stretch; margin-right: 4px; width: auto;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
