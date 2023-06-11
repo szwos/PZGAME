@@ -1688,6 +1688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36f36a3fc25a49478350391ad7f1061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverMenuPrefab: {fileID: 1062149141386741736, guid: 5bd995ac75e863f45a5b658a830f01ab, type: 3}
   maxHealth: 3
   health: 0
 --- !u!114 &820667363

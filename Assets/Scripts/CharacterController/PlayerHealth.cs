@@ -1,9 +1,13 @@
+using CharacterController;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth: MonoBehaviour
 {
+    [SerializeField]
+    public GameObject gameOverMenuPrefab;
+
     public int maxHealth = 100;
     public int health;
 
@@ -16,7 +20,11 @@ public class PlayerHealth: MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            GetComponentInParent<CharacterCtrl>().enabled = false; //take away control
+            Instantiate(gameOverMenuPrefab);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0); //make player invisible (a quick hack)
+            this.enabled = false;
         }
     }
 
