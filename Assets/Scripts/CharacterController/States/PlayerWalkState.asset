@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffb264a2771dfd4399a38182f304daa, type: 3}
   m_Name: PlayerWalkState
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c8e5d8d0e468d49af4f5c87da54622, type: 3}
   m_Name: PlayerJumpState
   m_EditorClassIdentifier: 
-  jumpVelocity: 10
+  jumpVelocity: 14
   airControl: 1
-  speed: 5
+  speed: 6
