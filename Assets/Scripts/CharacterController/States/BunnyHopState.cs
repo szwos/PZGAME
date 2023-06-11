@@ -66,7 +66,7 @@ namespace CharacterController
 
         public override void Exit()
         {
-            Debug.Log("Leaving BHOP state");
+            //Debug.Log("Leaving BHOP state");
             //do nothing
         }
 
