@@ -1,6 +1,8 @@
 //TODO: move to States???
 using UnityEngine;
 using System.Collections;
+using System;
+using UnityEditor.UI;
 
 namespace CharacterController
 {
@@ -9,13 +11,15 @@ namespace CharacterController
     {
         [SerializeField]
         private float speed = 5f;
-
+        private int slide_slowdown = 3000;
         private Rigidbody2D rb;
         private GroundCheck groundCheck;
         private CharacterAnimation animation;
         private float xInput;
         private bool jumpInput;
         private bool bhopPossible = false;
+        private bool sliding = false;
+
 
         public override void Enter(CharacterCtrl parent)
         {
@@ -35,6 +39,7 @@ namespace CharacterController
         {
             xInput = Input.GetAxis("Horizontal");
             jumpInput = Input.GetButtonDown("Jump");
+            
             //TODO: other inputs
         }
 
@@ -48,6 +53,7 @@ namespace CharacterController
                 else
                     stateRunner.SetState(typeof(JumpState));
             }
+            
         }
 
         public override void Exit()
@@ -63,10 +69,32 @@ namespace CharacterController
         //TODO: handle slopes better (currently character breaks away from the ground after goin up slope, what is worse - this also happens when character changes direction going up slope)
         public override void Update()
         {
-            rb.velocity = new Vector2(speed * xInput, rb.velocity.y);
+            //**********SLIDE tech**************//
+            //if velocity != 0 to mo¿e a jak nie to nie mozna slide w miejscu????
+            if (Input.GetKey("c"))
+            {
+                sliding = true;
+                rb.gravityScale = 30f;
+                rb.velocity = new Vector2(slide_slowdown/1000 * speed * xInput, rb.velocity.y);
+                if (slide_slowdown < 1000) { slide_slowdown = 1000; }
+                else
+                {
+                    slide_slowdown = slide_slowdown - 1;
+                }
+
+
+            }
+            else {
+                sliding = false;
+                slide_slowdown = 3000;
+                rb.gravityScale = 3f;
+                rb.velocity = new Vector2(speed * xInput, rb.velocity.y); 
+            }
+            //**********SLIDE tech**************//
+
             //TODO: animation flip character
             //TODO: play walking animation
-
+            Debug.Log(rb.velocity.x);
             if (rb.velocity.x > 0.1 || rb.velocity.x < -0.1) //TODO: remove magic numbers, set as MonoBehaviour parameters or const
                 animation.animator.SetBool("IsMoving", true);
             else
