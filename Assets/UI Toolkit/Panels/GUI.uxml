@@ -1,7 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
         <ui:VisualElement name="Upper" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: space-between; height: 10%; max-height: 10%; flex-direction: row-reverse;">
-            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+            <ui:VisualElement name="HealthDisplay" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: auto; max-width: 15%; -unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/Sprites/GUI/hearts3.png?fileID=21300000&amp;guid=1d790b56ab9ae8347b878cb467e252e9&amp;type=3#hearts3&apos;);" />
+            <ui:VisualElement name="Spacer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
             <ui:FloatField label="Czas:" value="42,2" readonly="true" focusable="false" name="Timer" style="position: relative; font-size: 20px; -unity-background-scale-mode: stretch-to-fill;" />
         </ui:VisualElement>
     </ui:VisualElement>

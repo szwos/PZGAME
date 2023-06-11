@@ -9,6 +9,9 @@ public class EnemyBulletScript : MonoBehaviour
     public float force;
     private float timer;
 
+    [SerializeField]
+    public int bulletDamage = 1;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,7 +36,7 @@ public class EnemyBulletScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player")) {
-            other.gameObject.GetComponent<PlayerHealth>().health -= 20;
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(bulletDamage);
             Destroy(gameObject);
         }
     }

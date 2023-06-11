@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    public int damage = 5;
+    public int damage = 1;
     public PlayerHealth playerHealth;
     public Knockback knockback;
 
