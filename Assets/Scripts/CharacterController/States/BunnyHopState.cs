@@ -98,7 +98,7 @@ namespace CharacterController
                 stateRunner.StartCoroutine(BhopWait());
                 //bhopCount++;
                 if(bhopVelocityScaler <= 3f)//limit to 3x original speed
-                    bhopVelocityScaler += 0.1f;
+                    bhopVelocityScaler += 0.2f;
             }
 
             
@@ -110,7 +110,7 @@ namespace CharacterController
         {
             bhopPossible = true;
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
 
             bhopPossible = false;
 

@@ -10,19 +10,22 @@ namespace CharacterController
     public class SlideState : State<CharacterCtrl>
     {
         [SerializeField]
-        private float speed = 5f;
+        private float speed = 6f;
 
+        private float slideDirection;
         private bool leaveSlide;
         private bool leaveSlideJump;
         private int slideSpeedModifier;
         private CharacterAnimation animation;
 
         private Rigidbody2D rb;
+        
 
         public override void Enter(CharacterCtrl parent)
         {
-
             
+
+
             base.Enter(parent);
             if (rb == null)
                 rb = parent.GetComponent<Rigidbody2D>();
@@ -32,9 +35,13 @@ namespace CharacterController
 
             leaveSlide = false;
             leaveSlideJump = false;
-            slideSpeedModifier = 3000;
+            slideSpeedModifier = 4000;
 
             animation.animator.SetBool("IsSliding", true);
+            slideDirection = rb.transform.localScale.x;
+
+
+
         }
 
         public override void CaptureInput()
@@ -60,7 +67,7 @@ namespace CharacterController
         public override void Exit()
         {
             //do nothing for now
-            slideSpeedModifier = 3000;
+            slideSpeedModifier = 4000;
             rb.gravityScale = 3f;
             animation.animator.SetBool("IsSliding", false);
         }
@@ -73,15 +80,15 @@ namespace CharacterController
         public override void Update()
         {
             
-            rb.gravityScale = 30f;
-            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * (slideSpeedModifier / 1000) * speed, rb.velocity.y);
+            rb.gravityScale = 100f;
+            rb.velocity = new Vector2(slideDirection * (slideSpeedModifier / 1000) * speed, rb.velocity.y);
 
-            if(slideSpeedModifier < 500)
+            if(slideSpeedModifier < 1000)
             {
-                slideSpeedModifier = 500;
+                slideSpeedModifier = 1000;
             } else
             {
-                slideSpeedModifier -= 10;
+                slideSpeedModifier -= 5;
             }
 
         }

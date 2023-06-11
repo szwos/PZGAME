@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87c37f9288af4840ab2cac83063b162, type: 3}
   m_Name: PlayerSlideState
   m_EditorClassIdentifier: 
+  speed: 6
