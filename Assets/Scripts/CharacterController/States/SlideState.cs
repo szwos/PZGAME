@@ -30,7 +30,7 @@ namespace CharacterController
             if (rb == null)
                 rb = parent.GetComponent<Rigidbody2D>();
 
-            if (animation == null) 
+            //if (animation == null) 
                 animation = parent.CharacterAnimation;
 
             leaveSlide = false;
@@ -66,7 +66,6 @@ namespace CharacterController
 
         public override void Exit()
         {
-            //do nothing for now
             slideSpeedModifier = 4000;
             rb.gravityScale = 3f;
             animation.animator.SetBool("IsSliding", false);

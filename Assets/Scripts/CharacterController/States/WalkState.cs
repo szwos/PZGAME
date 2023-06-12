@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System;
-using Unity.VisualScripting;
-using UnityEditor.UI;
 
 namespace CharacterController
 {
@@ -23,12 +20,13 @@ namespace CharacterController
 
         public override void Enter(CharacterCtrl parent)
         {
+            //Debug.Log("Walk state - enter");
             base.Enter(parent);
             if (groundCheck == null)
                 groundCheck = parent.GetComponentInChildren<GroundCheck>();
             if (rb == null)
                 rb = parent.GetComponent<Rigidbody2D>();
-            if (animation == null)
+            //if (animation == null)
                 animation = parent.CharacterAnimation;
 
             //every time player enters walking state, he has 0.1s time to enter BunnyHop state

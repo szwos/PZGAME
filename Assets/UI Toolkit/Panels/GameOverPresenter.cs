@@ -23,10 +23,15 @@ public class GameOverPresenter : MonoBehaviour
     private IEnumerator ReloadScene()
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        AsyncOperation unload = SceneManager.UnloadSceneAsync(currentScene);
+        /*AsyncOperation unload = SceneManager.UnloadSceneAsync(currentScene);
+
+        if(unload == null)
+        {
+            Debug.Log("unload == null");
+        }
 
         while(!unload.isDone)
-            yield return null;
+            yield return null;*/
 
         AsyncOperation load = SceneManager.LoadSceneAsync(currentScene);
 

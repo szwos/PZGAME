@@ -9,7 +9,10 @@ namespace CharacterController
 
         protected override void Awake()
         {
+            Debug.Log("CharacterCtrl - awake");
             CharacterAnimation = new CharacterAnimation(GetComponent<Animator>(), transform);
+            
+            Debug.Log(CharacterAnimation.GetHashCode());
             base.Awake();
         }
 
