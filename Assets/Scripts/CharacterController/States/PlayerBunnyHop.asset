@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   jumpVelocity: 14
+  particles: {fileID: 2615263263229627229, guid: fb06a1f55ae0a894b83e11c9bfc50462, type: 3}

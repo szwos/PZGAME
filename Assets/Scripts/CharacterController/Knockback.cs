@@ -7,10 +7,10 @@ public class Knockback : MonoBehaviour
 {
     private Rigidbody2D m_Rigidbody2D;
     //knockback
-    public float knockbackForce;
-    public float knockbackCounter;
-    public float knockbackTotalTime;
-    public Boolean KnockFromRight;
+    public float knockbackForce = 10;
+    public float knockbackCounter = 0;
+    public float knockbackTotalTime = 0.3f;
+    public Boolean KnockFromRight = true;
     //knockback
 
     private void FixedUpdate()
